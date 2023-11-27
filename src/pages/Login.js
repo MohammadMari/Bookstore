@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
+import {supabase} from './supabase'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -8,17 +9,19 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate(); // Hook for navigation
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         // Implement your login logic here
-        console.log('Login clicked', email, password);
+        const { user, session, error } = await supabase.auth.signIn({
+            email: email,
+            password: password,
+          })
     };
 
     const handleSignUp = () => {
-        // Implement your signup logic here
-        console.log('Sign Up clicked', email, password);
-        // Navigate to the signup page
         navigate('/signup');
     };
+
+    
 
     
 

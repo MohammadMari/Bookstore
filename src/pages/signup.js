@@ -18,18 +18,16 @@ const SignUp = () => {
             password: password,
         })
 
-        console.log(error);
-        console.log(data);
-
+        if (error) {
+            // add error handling
+            return;
+        }
     }
 
     const handleSignUp = async () => {
         // Implement your signup logic here
         if (privacyAgreement) {
-            
             await signUp();
-            // Navigate to the login page after successful signup
-            // navigate('/login');
         } else {
             alert('Please agree to the privacy policy.');
         }
