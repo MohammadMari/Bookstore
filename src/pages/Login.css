@@ -1,0 +1,38 @@
+/* Login.css */
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: rgb(142, 67, 134);
+    color: white;
+    padding: 10px;
+    border-style: double;
+    border-radius: 5px;
+    cursor: pointer;
+    border-color: #ccc;
+}
+
+button:hover {
+    background-color: rgb(68, 19, 63);
+}
