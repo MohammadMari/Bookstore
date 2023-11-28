@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import './SignUp.css'; // Import the CSS file for styling
 import { supabase } from './supabase'
+import { useAuth } from './auth';
 
 const SignUp = () => {
     const [firstName, setFirstName] = useState('');
@@ -10,7 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [privacyAgreement, setPrivacyAgreement] = useState(false);
     const navigate = useNavigate(); // Hook for navigation
-
+    const user = useAuth();
 
     async function signUp() {
         const {data, error} = await supabase.auth.signUp({
@@ -32,6 +33,10 @@ const SignUp = () => {
             alert('Please agree to the privacy policy.');
         }
     };
+
+    if (user) {
+        return (<Navigate to={{pathname: "/",}}/>);    
+    }
 
     return (
         <div className="signup-container"> {/* Added a class for styling */}

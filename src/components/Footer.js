@@ -74,27 +74,15 @@ const Footer = () => {
                             <div className="input-group">
                                 <input
                                     type="text"
-                                    class="form-control py-1"
+                                    className="form-control py-1"
                                     placeholder="Enter Your Email..."
                                     aria-label="Your Email Address"
                                     aria-describedby="basic-addon2"
                                 />
-                                <span class="input-group-text py-2" id="basic-addon2">
+                                <span className="input-group-text py-2" id="basic-addon2">
                                     Subscribe
                                 </span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <footer className="footer-bottom py-4">
-                <div className="container.xxl">
-                    <div className="row">
-                        <div className="col-12">
-                            <p className="text-center mb-0">
-                                &copy; {new Date().getFullYear()}; Vintage Volumes. All rights
-                                reserved.
-                            </p>
                         </div>
                     </div>
                 </div>
