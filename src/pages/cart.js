@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import PaymentForm from './paymentForm';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const navigate = useNavigate();
 
     const addToCart = (product) => {
         setCartItems((prevItems) => [...prevItems, product]);
@@ -15,6 +18,10 @@ const Cart = () => {
         return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
     };
 
+    const handlePayment = () => {
+        window.open('./payment');
+    }
+
     return (
         <div>
             <h2>Your Cart</h2>
@@ -27,6 +34,7 @@ const Cart = () => {
                 ))}
             </ul>
             <p>Total: ${calculateTotal()}</p>
+            <button className="checkoutButton" onClick={handlePayment}>Checkout</button>
         </div>
     );
 };
