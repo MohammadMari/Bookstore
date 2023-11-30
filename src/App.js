@@ -12,6 +12,7 @@ import Cart from './pages/cart';
 import Book from './pages/books';
 import NotFound from './pages/NotFound';
 import Shop from './pages/shop';
+import ManageAccountPage from './pages/manageAccount';
 
 import { AuthProvider, useAuth } from './pages/auth';
 
@@ -27,7 +28,8 @@ function App() {
     {path: 'login', element: <Login />},
     {path: 'signup', element: <SignUp />},
     {path: 'wishlist', element: <Wishlist />},
-    {path: 'shop', element: <Shop />}
+    {path: 'shop', element: <Shop />},
+    {path: 'manageAccount', element: <ManageAccountPage />}
   ];
 
   return (
