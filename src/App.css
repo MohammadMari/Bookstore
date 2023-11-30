@@ -51,16 +51,18 @@ a {
 }
 
 .button {
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  padding: 13px, 33px;
-  border-radius: 25px;
+  background-color: #3498db; /* Blue background color */
+  color: #fff; /* White text color */
+  font-size: 16px; /* Larger font size */
+  padding: 12px 24px; /* Adjusted padding for a more balanced look */
+  border-radius: 8px; /* Slightly reduced border radius for a softer edge */
+  border: none; /* Remove border for a cleaner appearance */
+  cursor: pointer; /* Add a pointer cursor for better interactivity */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
 .button:hover {
-  background-color: var(--color-2);
-  color: #131921;
+  background-color: #2980b9; /* Darker blue on hover */
 }
 
 /* HEADER */
