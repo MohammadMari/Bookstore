@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+// Cart.js
+import React from 'react';
+import { useCart } from './CartContext';
+// ...
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
-
-    const addToCart = (product) => {
-        setCartItems((prevItems) => [...prevItems, product]);
-    };
+    const { state, dispatch } = useCart();
 
     const removeFromCart = (productId) => {
-        setCartItems((prevItems) => prevItems.filter(item => item.id !== productId));
+        dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
     };
 
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
+        return state.cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
     };
 
     return (
         <div>
             <h2>Your Cart</h2>
             <ul>
-                {cartItems.map((item) => (
+                {state.cartItems.map((item) => (
                     <li key={item.id}>
-                        {item.name} - ${item.price}
+                        {item.title} - ${item.price}
                         <button onClick={() => removeFromCart(item.id)}>Remove</button>
                     </li>
                 ))}
