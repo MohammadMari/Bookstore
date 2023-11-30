@@ -28,7 +28,7 @@ const Login = () => {
     };
 
 
-    if (user) {
+    if (user.user != null) {
         return (<Navigate to={{pathname: "/",}}/>);    
     }
 
