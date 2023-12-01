@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate, Navigate  } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
 import {supabase} from './supabase'
-import { useAuth } from './auth';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate(); // Hook for navigation
-    const user = useAuth();
-
 
     const handleLogin = async () => {
         // Implement your login logic here
@@ -26,11 +23,6 @@ const Login = () => {
     const handleSignUp = () => {
         navigate('/signup');
     };
-
-
-    if (user.user != null) {
-        return (<Navigate to={{pathname: "/",}}/>);    
-    }
 
     return (
         <div className='page-container'>

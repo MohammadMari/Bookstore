@@ -3,7 +3,7 @@ import { supabase } from './supabase'
 
 const AuthContext = React.createContext()
 export const AuthProvider = ({ children}) => {
-    const [user, setUser] = useState()
+  const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
