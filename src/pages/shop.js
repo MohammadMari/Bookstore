@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+
+// Shop.js
+import React, { useEffect, useState } from 'react';
 import BookTile from '../components/BookTile';
-import './shop.css'
+import './shop.css';  // Import the main shop styles
+import '../components/BookTile.css';  // Import the BookTile styles
 import { supabase } from './supabase';
+import Cart from './cart';
+import { useCart } from './CartContext';
 
 
 
@@ -9,6 +14,8 @@ import { supabase } from './supabase';
 const Shop = () => {
   // grabbing items from database
   const [shopItems, setShopItems] = useState([]);
+  const { dispatch } = useCart();
+  const [cartItems, setCartItems] = useState([]);
 
   // I'm not 100% sure this is the correct way to do everything, but its a good starting point
   useEffect(() => {
@@ -17,6 +24,9 @@ const Shop = () => {
       setShopItems(items);
     })();
   }, []);
+  const addToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: product });
+  };
 
   if (!shopItems) {
     return (<div>
@@ -48,15 +58,17 @@ const Shop = () => {
       setShopItems(newBooks);
   }
 
-
   return (  
+    <div>
     <div className='tile-container'>
-      {
-        shopItems.map(x => <BookTile bookTileInfo={x}  />)
-      }
-
-      <button onClick={uploadBookToDatabase}></button>
-    </div>);
+        {shopItems.map((item, index) => (
+          <BookTile key={index} bookTileInfo={item} onAddToCart={addToCart} />
+        ))}
+      </div>
+          <Cart cartItems={cartItems} />
+          <button onClick={uploadBookToDatabase}></button>
+    </div>
+  );
 };
 
 export default Shop;

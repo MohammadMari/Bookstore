@@ -21,6 +21,9 @@ const Login = () => {
     };
 
     const handleSignUp = () => {
+        // Implement your signup logic here
+        console.log('Sign Up clicked', email, password);
+        // Navigate to the signup page
         navigate('/signup');
     };
 
