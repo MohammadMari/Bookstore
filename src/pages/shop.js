@@ -58,8 +58,6 @@ const Shop = () => {
       setShopItems(newBooks);
   }
 
-  const shopItems = Array.from({ length: 12 }, () => exampleShopItem);
-
   return (  
     <div>
     <div className='tile-container'>

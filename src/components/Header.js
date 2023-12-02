@@ -26,13 +26,6 @@ const Header = () => {
 
   return (
     <div>
-            <header className="header-top-strip py-3">
-                <div className="container.xxl">
-                    <div className="row">
-                        <p className="black-link mb-0"> LIMITED TIME. FREE SHIPPING & RETURNS ON $50+ PURCHASE. </p>
-                    </div>
-                </div>
-            </header>
       <header className="header-upper py-3">
         <div className="header-row">
           <NavLink to="/">
@@ -40,6 +33,14 @@ const Header = () => {
           </NavLink>
           <div className="col-3">
             <div className="input-group">
+              <input
+                type="text"
+                className="form-control py-2"
+                placeholder="Search Product Here"
+                aria-label="Search Product Here"
+                aria-describedby="basic-addon2"
+              />
+              <span className="input-group-text py-3 search" id="basic-addon2">
                 <BsSearch />
               </span>
             </div>
