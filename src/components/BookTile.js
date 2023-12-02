@@ -11,15 +11,15 @@ function BookTile(props) {
     };
 
     return (
-        <div className="book-tile">
+    <div className="book-tile">
             <div className='book-picture'></div>
-            <div className='book-info'>
+        <div className='book-info'>
                 <div className='title'>{bookTileInfo.title}</div>
                 <div className='author'>{bookTileInfo.author}</div>
                 <div className='price'>{bookTileInfo.price}</div> {/* Display the price */}
                 <button onClick={handleAddToCart}>Add to Cart</button>
-            </div>
         </div>
+    </div>
     );
 }
 

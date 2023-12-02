@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; // Import the CSS file for styling
+import { supabase } from './supabase'
 
 const SignUp = () => {
     const [firstName, setFirstName] = useState('');
@@ -8,14 +9,22 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [privacyAgreement, setPrivacyAgreement] = useState(false);
-    const navigate = useNavigate(); // Hook for navigation
 
-    const handleSignUp = () => {
-        // Implement your signup logic here
+    async function signUp() {
+        const {data, error} = await supabase.auth.signUp({
+            email: email,
+            password: password,
+        })
+
+        if (error) {
+            // add error handling
+            return;
+        }
+    }
+
+    const handleSignUp = async () => {
         if (privacyAgreement) {
-            console.log('Sign Up clicked', firstName, lastName, email, password);
-            // Navigate to the login page after successful signup
-            navigate('/login');
+            await signUp();
         } else {
             alert('Please agree to the privacy policy.');
         }

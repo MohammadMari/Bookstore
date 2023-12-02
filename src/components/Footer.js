@@ -74,12 +74,12 @@ const Footer = () => {
                             <div className="input-group">
                                 <input
                                     type="text"
-                                    class="form-control py-1"
+                                    className="form-control py-1"
                                     placeholder="Enter Your Email..."
                                     aria-label="Your Email Address"
                                     aria-describedby="basic-addon2"
                                 />
-                                <span class="input-group-text py-2" id="basic-addon2">
+                                <span className="input-group-text py-2" id="basic-addon2">
                                     Subscribe
                                 </span>
                             </div>
