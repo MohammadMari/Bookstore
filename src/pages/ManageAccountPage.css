@@ -18,9 +18,9 @@
 .name-section,
 .address-section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 15px;
+  gap: 5px;
   margin-bottom: 20px;
 }
 
@@ -37,7 +37,7 @@ label {
 input,
 select {
   padding: 8px;
-  margin-top: 5px;
+  margin-top: 2px;
   width: 100%; 
 }
 

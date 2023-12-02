@@ -12,13 +12,17 @@ import { AuthProvider, useAuth } from "../pages/auth";
 
 const Header = () => {
   const user = useAuth();
+  console.log(user);
   const links = [
     { to: "about", icon: <BsChatSquare className="icon" /> },
     { to: "cart", icon: <BsCart className="icon" /> },
   ];
 
   if (user.user) {
-    links.push({ to: "wishlist", icon: <BsHeart className="icon" /> });
+    links.push(
+      { to: "wishlist", icon: <BsHeart className="icon" /> },
+      { to: "manageAccount", icon: <BsFillPersonFill className="icon" /> }
+      );
   }
   else {
     links.push({ to: "login", icon: <BsFillPersonFill className="icon" /> });

@@ -1,19 +1,52 @@
 // ManageAccountPage.js
 
-import React, { useState } from 'react';
-import './ManageAccountPage.css';
+import React, { useEffect, useState } from "react";
+import "./ManageAccountPage.css";
+import { supabase } from "./supabase";
+import {useAuth} from './auth'
 
 const ManageAccountPage = () => {
+  var user = useAuth().user;
+  async function getUserInfo() {
+    if (user) {
+      const {data, error} = await supabase.from('profiles').select('*').eq('id', user.id).single();
+
+      var formattedData = {
+        firstName: data.first_name,
+        lastName: data.last_name,
+        email: data.email,
+        address: {
+          country: data.country,
+          state: data.state,
+          city: data.city,
+          zipCode: data.zipcode,
+          street: data.address1,
+        }};
+
+        setUserData(formattedData);
+    }
+  }
+
+  async function uploadUserData() {
+
+  }
+
+  useEffect(() => {
+    (async () => {
+      const userInfo = await getUserInfo();
+    })();
+  }, []);
+
   const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: "",
+    lastName: "",
+    email: "",
     address: {
-      country: '',
-      state: '',
-      city: '',
-      zipCode: '',
-      street: '',
+      country: "",
+      state: "",
+      city: "",
+      zipCode: "",
+      street: "",
     },
   });
 
@@ -36,10 +69,33 @@ const ManageAccountPage = () => {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('User data submitted:', userData);
+    console.log("User data submitted:", userData);
+    var formattedData = {
+      first_name: userData.firstName,
+      last_name: userData.lastName,
+      address1: userData.address.street,
+      state: userData.address.state,
+      country: userData.address.country,
+      city: userData.address.city,
+      zipcode: userData.address.zipCode,
+    }
+
+    console.log(formattedData);
+
+    const {error} = await supabase.from('profiles').update(formattedData).eq('id', user.id);
+
+    // add handling for email and password changes
+    // add error handling
+    console.log(error);
   };
+  if (!user) {
+    return (<div>
+      You must be logged in.
+    </div>)
+  }
+
 
   return (
     <div className="manage-account-container">
@@ -88,7 +144,6 @@ const ManageAccountPage = () => {
             >
               <option value="">Select Country</option>
               <option value="United States">United States</option>
-              
             </select>
           </label>
           <label>
