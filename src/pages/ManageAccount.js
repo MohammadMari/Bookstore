@@ -23,17 +23,17 @@ const ManageAccountPage = () => {
           street: data.address1,
         }};
 
+        if (error) {
+            // add error handling
+        }
+
         setUserData(formattedData);
     }
   }
 
-  async function uploadUserData() {
-
-  }
-
   useEffect(() => {
     (async () => {
-      const userInfo = await getUserInfo();
+      await getUserInfo();
     })();
   }, []);
 
@@ -82,7 +82,6 @@ const ManageAccountPage = () => {
       zipcode: userData.address.zipCode,
     }
 
-    console.log(formattedData);
 
     const {error} = await supabase.from('profiles').update(formattedData).eq('id', user.id);
 

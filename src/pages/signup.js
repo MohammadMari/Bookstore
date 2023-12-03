@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; // Import the CSS file for styling
 import { supabase } from './supabase'
 
@@ -11,7 +10,7 @@ const SignUp = () => {
     const [privacyAgreement, setPrivacyAgreement] = useState(false);
 
     async function signUp() {
-        const {data, error} = await supabase.auth.signUp({
+        const {error} = await supabase.auth.signUp({
             email: email,
             password: password,
         })

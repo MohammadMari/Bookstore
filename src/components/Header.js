@@ -2,13 +2,11 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import {
   BsSearch,
-  BsFillHouseFill,
-  BsHeart,
   BsFillPersonFill,
   BsCart,
   BsChatSquare,
 } from "react-icons/bs";
-import { AuthProvider, useAuth } from "../pages/auth";
+import { useAuth } from "../pages/auth";
 
 const Header = () => {
   const user = useAuth();

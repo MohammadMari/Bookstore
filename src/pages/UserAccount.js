@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ManageAccount from "./ManageAccount";
 import { supabase } from "./supabase";
 import { useAuth } from "./auth";
@@ -30,8 +30,8 @@ const UserAccount = () => {
     <div>
       <div className="menu-container">
         <div className="menu">
-          <div className={"menu-button" + (page == 0 ? " selected" : '')} onClick={() => changePage(0)}>Manage account</div>
-          <div className={"menu-button" + (page == 1 ? " selected" : '')} onClick={() => changePage(1)}>View orders</div>
+          <div className={"menu-button" + (page === 0 ? " selected" : '')} onClick={() => changePage(0)}>Manage account</div>
+          <div className={"menu-button" + (page === 1 ? " selected" : '')} onClick={() => changePage(1)}>View orders</div>
           <div className="menu-button " onClick={signOut}>Log out</div>
         </div> 
       </div>
