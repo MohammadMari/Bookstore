@@ -1,52 +1,91 @@
 // PaymentForm.js
-import React from 'react';
-import { PaymentElement, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-
+import React, { useState } from "react";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import styles from "./payment.css";
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!stripe || !elements) {
-        console.log('biaaatch');
+      console.log("Stripe.js has not loaded yet.");
       return;
     }
 
-    // When checking out, you want to make sure a user has an account, redirect them to the login/signup page if necessary.
-    // After the user completes their payment
-    // under the books table, for each book provided make sure to mark them as purchased (there is already a column for it just mark it as true)
-    // afterwards, create a new order in the orders table. It takes total_cost and user_ordered (FK to user id). (dont worry about date ordered because it autogens that)
-    // once the order id is created, we start mapping the books ordered to that id
-    // to do so, for each book in the order, we create a entry in the books_in_order table (takes a FK for book id and order id).
-    // I'm not sure if stripe provided like a confirmation number or anything but if it does please create a column in the orders table and save it there.
+    // Additional validation for name and email
+    if (!name || !email) {
+      setErrorMessage("Please enter name and email.");
+      return;
+    }
 
-    // Your payment processing logic here
-    // For example, create a payment intent and confirm the payment
+    // Clear previous error messages
+    setErrorMessage(null);
 
-    // const { token, error } = await stripe.createToken(elements.getElement(CardElement));
-    // Handle the token or error
+    // Create a payment method using the card element
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+      billing_details: {
+        name: name,
+        email: email,
+      },
+    });
 
-    // OR use confirmCardPayment for PaymentIntents
-    // const result = await stripe.confirmCardPayment(clientSecret, {
-    //   payment_method: {
-    //     card: elements.getElement(CardElement),
-    //   },
-    // });
+    if (error) {
+      console.error(error);
+      setErrorMessage(error.message);
+      return;
+    }
 
-    // Handle the result
+    // Now you have a payment method, you can send it to your backend
+    // to create a PaymentIntent and confirm the payment
+
+    // For demonstration purposes, you can log the paymentMethod id
+    console.log("PaymentMethod:", paymentMethod.id);
+
+    // You may want to send the paymentMethod.id to your server
+    // and handle the payment confirmation and order processing there
   };
 
   return (
-    <div class='div-1'>
-        <form onSubmit={handleSubmit}>
-            <CardElement style='payment-container'/>
-            <button type="submit" style={{width: '200px', align: 'center', display: 'block', justifyContent: 'center', margin: 'auto'}}>Pay</button>
-        </form>
+    <div className={styles.container}>
+      <form className={styles.paymentContainer} onSubmit={handleSubmit}>
+        <label>
+          Name on Card:
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <CardElement style={{ base: { fontSize: "16px" } }} />
+        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+        <button
+          type="submit"
+          style={{ width: "200px", margin: "auto", marginTop: "20px" }}
+        >
+          Pay
+        </button>
+      </form>
     </div>
-    
   );
 };
 

@@ -1,20 +1,47 @@
-  .payment-container {
-    display: flex;
-    max-width: 50px;
-    width: 40px; /* Adjust the width as needed */
-    padding: 20px 14px;
-    border: 1px solid #ddd; /* Optional: Add a border */
-    border-radius: 8px;
-    background-color: #fff; /* Optional: Set a background color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+/* PaymentForm.module.css */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
 
-  .div-1{
-    display: block;
-    width: 20px; /* Adjust the width as needed */
-    padding: 20px 14px;
-    border: 1px solid #ddd; /* Optional: Add a border */
-    border-radius: 8px;
-    background-color: #fff; /* Optional: Set a background color */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+.payment-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.div-1 {
+  margin-top: 20px;
+}
+
+/* Optional: Add styles for the input fields */
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
