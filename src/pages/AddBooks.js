@@ -39,8 +39,8 @@ const AddBook = () => {
     };
 
     return (
-        <div>
-            <div className="container4">
+        <div className="add-book-container">
+            <div className="add-book-form-container">
                 <h2>Add Book</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -104,6 +104,7 @@ const AddBook = () => {
                 </form>
             </div>
         </div>
+
     );
 };
 

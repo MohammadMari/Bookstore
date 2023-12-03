@@ -1,6 +1,6 @@
-/* AddBooks.css
+/* AddBook.css */
 
-body {
+.add-book-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,38 +8,38 @@ body {
     margin: 0;
 }
 
-.container {
+.add-book-form-container {
     background-color: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
-h2 {
+.add-book-form h2 {
     text-align: center;
 }
 
-form {
+.add-book-form form {
     display: flex;
     flex-direction: column;
 }
 
-div {
+.add-book-form div {
     margin-bottom: 10px;
 }
 
-label {
+.add-book-form label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-input {
+.add-book-form input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-button {
+.add-book-form button {
     padding: 10px;
     background-color: rgb(142, 67, 134);
     color: white;
@@ -48,6 +48,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: rgb(95, 14, 87);
-} */
+.add-book-form button:hover {
+    background-color: rgb(96, 21, 88);
+}
