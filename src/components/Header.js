@@ -20,8 +20,7 @@ const Header = () => {
 
   if (user.user) {
     links.push(
-      { to: "wishlist", icon: <BsHeart className="icon" /> },
-      { to: "manageAccount", icon: <BsFillPersonFill className="icon" /> }
+      { to: "account", icon: <BsFillPersonFill className="icon" /> }
       );
   }
   else {

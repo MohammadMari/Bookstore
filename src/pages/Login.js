@@ -46,9 +46,7 @@ const Login = () => {
                     <button type="button" onClick={handleLogin}>
                         Login
                     </button>
-                    <button type="button" onClick={handleSignUp}>
-                        Sign Up
-                    </button>
+                    <a href='/signup'>Create account</a>
                 </form>
             </div>
         </div>
