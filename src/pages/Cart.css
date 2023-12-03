@@ -1,0 +1,43 @@
+.cart-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    width: 60%;
+    min-width: 600px;
+}
+
+.book-title {
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.book-price {
+    font-weight: 500;
+}
+
+.remove-item {
+    padding: 5px;
+}
+
+
+.title-picture-container {
+    display: flex;
+    gap: 10px;
+}
+
+
+.checkout-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
