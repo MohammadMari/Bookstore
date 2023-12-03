@@ -2,23 +2,24 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import {
   BsSearch,
-  BsFillHouseFill,
-  BsHeart,
   BsFillPersonFill,
   BsCart,
   BsChatSquare,
 } from "react-icons/bs";
-import { AuthProvider, useAuth } from "../pages/auth";
+import { useAuth } from "../pages/auth";
 
 const Header = () => {
   const user = useAuth();
+  console.log(user);
   const links = [
     { to: "about", icon: <BsChatSquare className="icon" /> },
     { to: "cart", icon: <BsCart className="icon" /> },
   ];
 
   if (user.user) {
-    links.push({ to: "wishlist", icon: <BsHeart className="icon" /> });
+    links.push(
+      { to: "account", icon: <BsFillPersonFill className="icon" /> }
+      );
   }
   else {
     links.push({ to: "login", icon: <BsFillPersonFill className="icon" /> });

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import './App.css';
+import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import WrappedRoutes from './WrappedRoutes'
-import { AuthProvider } from './pages/auth';
+import WrappedRoutes from "./WrappedRoutes";
+
+import { AuthProvider } from "./pages/auth";
 
 function App() {
   return (
