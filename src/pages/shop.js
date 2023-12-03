@@ -1,62 +1,100 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BookTile from '../components/BookTile';
-import './shop.css'
+import './shop.css';
+import '../components/BookTile.css';
 import { supabase } from './supabase';
-
-
-
+import Cart from './cart';
+import { useCart } from './CartContext';
 
 const Shop = () => {
-  // grabbing items from database
   const [shopItems, setShopItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const { dispatch } = useCart();
+  const [cartItems, setCartItems] = useState([]);
 
-  // I'm not 100% sure this is the correct way to do everything, but its a good starting point
   useEffect(() => {
-  (async () => {
+    (async () => {
       const items = await getDataFromDatabase();
       setShopItems(items);
     })();
-  }, []);
+  }, [currentPage, itemsPerPage]);
 
-  if (!shopItems) {
-    return (<div>
-      Loading...
-    </div>)
-  }
+  const addToCart = (product) => {
+    dispatch({ type: 'ADD_TO_CART', payload: product });
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
 
   async function getDataFromDatabase() {
-    const {data, error} = await supabase.from('books').select('*');
-    // add error handling
+    const { data, error } = await supabase
+      .from('books')
+      .select('*')
+      .range(currentPage, currentPage + itemsPerPage - 1);
+
     return data;
   }
 
   async function uploadBookToDatabase() {
     var exampleBookItem = {
-        title: 'book title',
-        author: 'author',
-        isbn: "isbn",
-        release_year: 2020,
-        price: 60.00,
-        purchased: false,
-      }
+      title: 'book title',
+      author: 'author',
+      isbn: 'isbn',
+      release_year: 2020,
+      price: 60.00,
+      purchased: false,
+    };
 
-      const { error} = await supabase.from('books').insert(exampleBookItem).then(console.log('done'));
-      // add error checking
-      // errors typically consist of incorrect format (missing info), permission issues (RLS), or anything else done incorrectly. 
-      
+    const { error } = await supabase.from('books').insert(exampleBookItem);
+    if (error) {
+      console.error('Error uploading book:', error.message);
+    } else {
+      console.log('Book uploaded successfully!');
       var newBooks = await getDataFromDatabase();
       setShopItems(newBooks);
+    }
+    console.log('Redirect to the Add Book page or handle form on this page.');
   }
 
+  useEffect(() => {
+    async function fetchTotalBooks() {
+      const { count } = await supabase.from('books').select('count', { count: 'exact' }).single();
+      const totalBooks = count || 0;
+      setItemsPerPage(Math.min(totalBooks, 8));
+    }
 
-  return (  
-    <div className='tile-container'>
-      {
-        shopItems.map(x => <BookTile bookTileInfo={x}  />)
-      }
+    fetchTotalBooks();
+  }, []);
 
-      <button onClick={uploadBookToDatabase}></button>
-    </div>);
+  return (
+    <div>
+      <div className='tile-container'>
+        {shopItems.map((item, index) => (
+          <BookTile key={index} bookTileInfo={item} onAddToCart={addToCart} />
+        ))}
+      </div>
+      <div>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Prev
+        </button>
+        <span> Page {currentPage} </span>
+        <button onClick={handleNextPage} disabled={shopItems.length < itemsPerPage}>
+          Next
+        </button>
+      </div>
+      <Cart cartItems={cartItems} />
+      <Link to="/AddBooks">
+        <button onClick={() => console.log('Upload Book Clicked')}>Upload Book</button>
+      </Link>
+    </div>
+  );
 };
 
 export default Shop;

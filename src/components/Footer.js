@@ -87,6 +87,18 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
+            <footer className="footer-bottom py-4">
+                <div className="container.xxl">
+                    <div className="row">
+                        <div className="col-12">
+                            <p className="text-center mb-0">
+                                &copy; {new Date().getFullYear()}; Vintage Volumes. All rights
+                                reserved.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </>
     );
 };
