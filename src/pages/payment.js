@@ -5,7 +5,8 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import PaymentForm from './paymentForm'; 
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+const stripePromise = loadStripe('${process.env.REACT_APP_STRIPE_KEY}');
+console.log(process.env.REACT_APP_STRIPE_KEY)
 
 const Payment = () => {
   return (

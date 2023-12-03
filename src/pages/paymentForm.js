@@ -1,6 +1,6 @@
 // PaymentForm.js
 import React from 'react';
-import { PaymentElement,CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { PaymentElement, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 
 const PaymentForm = () => {
@@ -8,7 +8,6 @@ const PaymentForm = () => {
   const elements = useElements();
 
   const handleSubmit = async (e) => {
-    console.log('hello');
     e.preventDefault();
 
     if (!stripe || !elements) {
@@ -41,9 +40,9 @@ const PaymentForm = () => {
   };
 
   return (
-    <div>
+    <div class='div-1'>
         <form onSubmit={handleSubmit}>
-            <CardElement />
+            <CardElement style='payment-container'/>
             <button type="submit" style={{width: '200px', align: 'center', display: 'block', justifyContent: 'center', margin: 'auto'}}>Pay</button>
         </form>
     </div>

@@ -1,6 +1,18 @@
   .payment-container {
+    display: flex;
+    max-width: 50px;
     width: 40px; /* Adjust the width as needed */
-    padding: 20px;
+    padding: 20px 14px;
+    border: 1px solid #ddd; /* Optional: Add a border */
+    border-radius: 8px;
+    background-color: #fff; /* Optional: Set a background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .div-1{
+    display: block;
+    width: 20px; /* Adjust the width as needed */
+    padding: 20px 14px;
     border: 1px solid #ddd; /* Optional: Add a border */
     border-radius: 8px;
     background-color: #fff; /* Optional: Set a background color */

@@ -8,7 +8,7 @@ import Wishlist from "./pages/Wishlist";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import SignUp from "./pages/signup";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart";
 import Book from "./pages/books";
 import NotFound from "./pages/NotFound";
 import Shop from "./pages/shop";
