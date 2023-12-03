@@ -1,30 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate, Navigate  } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
 import {supabase} from './supabase'
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate(); // Hook for navigation
+    const [errorMessage, setErrorMessage] = useState();
 
     const handleLogin = async () => {
-        // Implement your login logic here
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
           })
 
-          console.log(data);
-          console.log(error);
-    };
-
-    const handleSignUp = () => {
-        // Implement your signup logic here
-        console.log('Sign Up clicked', email, password);
-        // Navigate to the signup page
-        navigate('/signup');
+          if (error) {
+            setErrorMessage(error.message);
+          }
     };
 
     return (
@@ -40,18 +31,17 @@ const Login = () => {
                     <label>
                         Password:
                         <input className='login-input'
-                            type={showPassword ? 'text' : 'password'}
+                            type='password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     <br />
+                    {errorMessage}
                     <button type="button" onClick={handleLogin}>
                         Login
                     </button>
-                    <button type="button" onClick={handleSignUp}>
-                        Sign Up
-                    </button>
+                    <a href='/signup'>Create account</a>
                 </form>
             </div>
         </div>
