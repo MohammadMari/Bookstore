@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from './supabase';
+import "./AddBooks.css";
 
 const AddBook = () => {
     const [bookData, setBookData] = useState({
@@ -39,67 +40,69 @@ const AddBook = () => {
 
     return (
         <div>
-            <h2>Add Book</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Book Name:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={bookData.title}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="author">Author Name:</label>
-                    <input
-                        type="text"
-                        id="author"
-                        name="author"
-                        value={bookData.author}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="price">Price:</label>
-                    <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        value={bookData.price}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="isbn">ISBN:</label>
-                    <input
-                        type="text"
-                        id="isbn"
-                        name="isbn"
-                        value={bookData.isbn}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="release_year">Release Year:</label>
-                    <input
-                        type="number"
-                        id="release_year"
-                        name="release_year"
-                        value={bookData.release_year}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <button type="submit">Add Book</button>
-                </div>
-            </form>
+            <div className="container">
+                <h2>Add Book</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="title">Book Name:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            value={bookData.title}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="author">Author Name:</label>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            value={bookData.author}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="price">Price:</label>
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            value={bookData.price}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="isbn">ISBN:</label>
+                        <input
+                            type="text"
+                            id="isbn"
+                            name="isbn"
+                            value={bookData.isbn}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="release_year">Release Year:</label>
+                        <input
+                            type="number"
+                            id="release_year"
+                            name="release_year"
+                            value={bookData.release_year}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <button type="submit">Add Book</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
