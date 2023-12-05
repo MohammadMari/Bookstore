@@ -3,12 +3,14 @@ import React from "react";
 import { useCart } from "./CartContext";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom"
+import { useAuth } from './auth'
 
 // ...
 
 const Cart = () => {
   const { state, dispatch } = useCart();
   const navigate = useNavigate()
+  const user = useAuth().user;
 
   const removeFromCart = (productId) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: productId });
@@ -21,7 +23,12 @@ const Cart = () => {
   };
 
   const handlePayment = () => {
-    navigate("/payment");
+    if (user) {
+      navigate("/payment");
+    }
+    else {
+      navigate('/login');
+    }
   };
 
   return (

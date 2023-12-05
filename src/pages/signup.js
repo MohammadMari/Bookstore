@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.css'; // Import the CSS file for styling
 import { supabase } from './supabase'
+import { useNavigate } from "react-router-dom"
 
 const SignUp = () => {
     const [firstName, setFirstName] = useState('');
@@ -8,6 +9,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [privacyAgreement, setPrivacyAgreement] = useState(false);
+    const navigate = useNavigate()
 
     async function signUp() {
         const {error} = await supabase.auth.signUp({
@@ -19,6 +21,8 @@ const SignUp = () => {
             // add error handling
             return;
         }
+
+        navigate('/');
     }
 
     const handleSignUp = async () => {
