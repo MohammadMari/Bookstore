@@ -1,0 +1,55 @@
+/* About.module.css */
+.about-container {
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.about-content-wrapper {
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    /* Define the 'container' class */
+    text-align: center;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-content h2 {
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.about-content h3 {
+    margin-top: 30px;
+}
+
+.about-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-content li {
+    margin-bottom: 10px;
+}
+
+/* Style the contact section separately */
+.about-content h3:last-child {
+    margin-top: 50px;
+}
+
+.about-content .contact-info {
+    font-size: 16px;
+    font-weight: bold;
+}

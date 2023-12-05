@@ -11,6 +11,7 @@ import Cart from "./pages/cart";
 import Book from "./pages/AddBooks";
 import NotFound from "./pages/NotFound";
 import Shop from "./pages/shop";
+import Payment from'./pages/payment';
 import UserAccount from "./pages/UserAccount";
 
 
@@ -23,6 +24,7 @@ const WrappedRoutes = () => {
     { path: "about", element: <About /> },
     { path: "contact", element: <Contact /> },
     { path: "shop", element: <Shop /> },
+    {path:'payment',element: <Payment />}
   ];
 
   if (user.user) {
