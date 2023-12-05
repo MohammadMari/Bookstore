@@ -4,7 +4,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styles from "./payment.css";
 import { useCart } from "./CartContext";
 import { supabase } from "./supabase";
-import {useAuth} from './auth'
+import { useAuth } from './auth'
 
 
 
@@ -17,9 +17,11 @@ const PaymentForm = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { state, dispatch } = useCart();
 
+  const [orderMessage, setOrderMesage] = useState('');
 
-  async function logOrder (order) {
-    const {data, error} = await supabase.from('orders').insert(order).select();
+
+  async function logOrder(order) {
+    const { data, error } = await supabase.from('orders').insert(order).select();
     if (error) {
       console.log(error);
       console.log("error logging order");
@@ -71,16 +73,21 @@ const PaymentForm = () => {
     // You may want to send the paymentMethod.id to your server
     // and handle the payment confirmation and order processing there
 
-    const order = await logOrder({user_id: user.id, total_cost: state.cartItems
-      .reduce((total, item) => total + item.price, 0)
-      .toFixed(2), payment_method_id: 'weee'});
+    const order = await logOrder({
+      user_id: user.id, total_cost: state.cartItems
+        .reduce((total, item) => total + item.price, 0)
+        .toFixed(2), payment_method_id: 'weee'
+    });
 
     var bookOrderLogs = [];
     for (var i = 0; i < state.cartItems.length; i++) {
-      bookOrderLogs.push({order_id: order.id, book_id: state.cartItems[i].id});
+      bookOrderLogs.push({ order_id: order.id, book_id: state.cartItems[i].id });
     }
 
     await supabase.from('books_in_order').insert(bookOrderLogs);
+
+    console.log(paymentMethod);
+    setOrderMesage("Thank you for your order, order ID: " + paymentMethod.id);
   };
 
   return (
@@ -114,6 +121,9 @@ const PaymentForm = () => {
         >
           Pay
         </button>
+        <div>
+          {orderMessage}
+        </div>
       </form>
     </div>
   );
