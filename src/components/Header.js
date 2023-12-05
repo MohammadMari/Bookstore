@@ -34,7 +34,7 @@ const Header = () => {
           </NavLink>
           <div className="col-3">
             <div className="input-group">
-              <input
+              {/* <input
                 type="text"
                 className="form-control py-2"
                 placeholder="Search Product Here"
@@ -43,7 +43,7 @@ const Header = () => {
               />
               <span className="input-group-text py-3 search" id="basic-addon2">
                 <BsSearch />
-              </span>
+              </span> */}
             </div>
           </div>
           <div>

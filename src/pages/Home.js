@@ -40,51 +40,6 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className="home-wrapper-2 py-5">
-                <div className="container.xxl">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="services d-flex align-items-center justify-content-between">
-                                <div className="d-flex align-items-center gap-15">
-                                    <img src="images/service.png" alt="services" />
-                                    <div>
-                                        <h6> Diverse Collection</h6>
-                                        <p className="mb-0"> From classics to rare finds</p>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-15">
-                                    <img src="images/service-02.png" alt="services" />
-                                    <div>
-                                        <h6> Exclusive Offers</h6>
-                                        <p className="mb-0"> Save on vintage editions</p>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-15">
-                                    <img src="images/service-04.png" alt="services" />
-                                    <div>
-                                        <h6> Affordable Prices</h6>
-                                        <p className="mb-0"> Explore without breaking the bank</p>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-15">
-                                    <img src="images/service-03.png" alt="services" />
-                                    <div>
-                                        <h6> Expert Recommendations</h6>
-                                        <p className="mb-0"> Discover personalized picks</p>
-                                    </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-15">
-                                    <img src="images/service-05.png" alt="services" />
-                                    <div>
-                                        <h6> Secure Checkout</h6>
-                                        <p className="mb-0"> Shop with confidence</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </>
     );
 };

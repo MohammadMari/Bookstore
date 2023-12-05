@@ -2,13 +2,32 @@
 import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import styles from "./payment.css";
+import { useCart } from "./CartContext";
+import { supabase } from "./supabase";
+import {useAuth} from './auth'
+
+
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const user = useAuth().user;
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(user.email);
   const [errorMessage, setErrorMessage] = useState(null);
+  const { state, dispatch } = useCart();
+
+
+  async function logOrder (order) {
+    const {data, error} = await supabase.from('orders').insert(order).select();
+    if (error) {
+      console.log(error);
+      console.log("error logging order");
+      return;
+    }
+
+    return data[0];
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +70,17 @@ const PaymentForm = () => {
 
     // You may want to send the paymentMethod.id to your server
     // and handle the payment confirmation and order processing there
+
+    const order = await logOrder({user_id: user.id, total_cost: state.cartItems
+      .reduce((total, item) => total + item.price, 0)
+      .toFixed(2), payment_method_id: 'weee'});
+
+    var bookOrderLogs = [];
+    for (var i = 0; i < state.cartItems.length; i++) {
+      bookOrderLogs.push({order_id: order.id, book_id: state.cartItems[i].id});
+    }
+
+    await supabase.from('books_in_order').insert(bookOrderLogs);
   };
 
   return (
