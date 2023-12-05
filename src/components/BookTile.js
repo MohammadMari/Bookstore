@@ -1,9 +1,25 @@
 // BookTile.js
-import React from 'react';
-import './BookTile.css';
+import React, { useState } from "react";
+import "./BookTile.css";
+import { useCart } from "../pages/CartContext";
 
 function BookTile(props) {
-    const { bookTileInfo, onAddToCart } = props;
+  const { bookTileInfo, onAddToCart } = props;
+  const { state, dispatch } = useCart();
+  const [inCart, setInCart] = useState(
+    state.cartItems.filter((x) => x.id == bookTileInfo.id).length
+  );
+
+  const bookInCart = () => {
+    var matchedBooks = state.cartItems.filter((x) => x.id == bookTileInfo.id);
+
+    console.log(state.cartItems);
+    console.log(matchedBooks);
+    // should really only go up to one
+    if (matchedBooks.length > 0) {
+      console.log(inCart);
+    }
+  };
 
     // Ensure sanitizedTitle is not undefined
     const sanitizedTitle = bookTileInfo.title ? bookTileInfo.title.replace(/\s/g, '_').toLowerCase() : 'placeholder';
@@ -11,14 +27,17 @@ function BookTile(props) {
 
     console.log("Generated Image URL:", imageUrl);
 
-    const handleAddToCart = () => {
-        console.log("Adding to cart:", bookTileInfo);
-        onAddToCart(bookTileInfo);
-    };
+  const handleAddToCart = () => {
+    // console.log("Adding to cart:", bookTileInfo);
+    onAddToCart(bookTileInfo);
+    setInCart(true);
+  };
 
-    return (
+  const button = inCart ? <div>In Cart</div> : <button onClick={handleAddToCart}>Add to Cart</button>;
+
+  return (
         <div className="book-tile">
-            <div className='book-picture'>
+      <div className="book-picture">
                 <img
                     src={imageUrl}
                     alt={`${bookTileInfo.title}`}
@@ -26,14 +45,15 @@ function BookTile(props) {
                     onError={(e) => { e.target.src = '/images/placeholder.jpg'; }}
                 />
             </div>
-            <div className='book-info'>
-                <div className='title'>{bookTileInfo.title}</div>
-                <div className='author'>{bookTileInfo.author}</div>
-                <div className='price'>{bookTileInfo.price}</div>
-                <button onClick={handleAddToCart}>Add to Cart</button>
-            </div>
+          <div className="book-info">
+        <div className="title">{bookTileInfo.title}</div>
+        <div className="author">{bookTileInfo.author}</div>
+        <div className="price">{bookTileInfo.price}</div>{" "}
+       
+        {button}
+          </div>
         </div>
-    );
+  );
 }
 
 export default BookTile;

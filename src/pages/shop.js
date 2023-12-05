@@ -4,8 +4,8 @@ import BookTile from '../components/BookTile';
 import './shop.css';
 import '../components/BookTile.css';
 import { supabase } from './supabase';
-import Cart from './cart';
 import { useCart } from './CartContext';
+import { BsDisplay } from 'react-icons/bs';
 
 const Shop = () => {
   const [shopItems, setShopItems] = useState([]);
@@ -80,7 +80,7 @@ const Shop = () => {
           <BookTile key={index} bookTileInfo={item} onAddToCart={addToCart} />
         ))}
       </div>
-      <div>
+      <div className='button-container'>
         <button onClick={handlePrevPage} disabled={currentPage === 1}>
           Prev
         </button>
@@ -89,10 +89,9 @@ const Shop = () => {
           Next
         </button>
       </div>
-      <Cart cartItems={cartItems} />
-      <Link to="/AddBooks">
+      {/* <Link to="/AddBooks">
         <button onClick={() => console.log('Upload Book Clicked')}>Upload Book</button>
-      </Link>
+      </Link> */}
     </div>
   );
 };
