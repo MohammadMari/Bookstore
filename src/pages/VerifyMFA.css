@@ -1,0 +1,23 @@
+
+
+.authenticator {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.authenticator-container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.red {
+    background-color: rgb(152, 0, 0);
+}
+
+.red:hover {
+    background-color: rgb(120, 0, 0);
+}

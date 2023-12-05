@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import { useAuth } from "./auth";
 import "./UserAccount.css";
 import MyOrders from './MyOrders.js'
+import MFA from './MFA.js'
 
 const UserAccount = () => {
   var user = useAuth().user;
@@ -11,6 +12,7 @@ const UserAccount = () => {
 
   const pages = [
     <ManageAccount />,
+    <MFA />,
     <MyOrders />];
     var displayPage = pages[page];
 
@@ -31,7 +33,8 @@ const UserAccount = () => {
       <div className="menu-container">
         <div className="menu">
           <div className={"menu-button" + (page === 0 ? " selected" : '')} onClick={() => changePage(0)}>Manage account</div>
-          <div className={"menu-button" + (page === 1 ? " selected" : '')} onClick={() => changePage(1)}>View orders</div>
+          <div className={"menu-button" + (page === 1 ? " selected" : '')} onClick={() => changePage(1)}>Manage MFA</div>
+          <div className={"menu-button" + (page === 2 ? " selected" : '')} onClick={() => changePage(2)}>View orders</div>
           <div className="menu-button " onClick={signOut}>Log out</div>
         </div> 
       </div>
